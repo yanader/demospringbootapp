@@ -10,7 +10,7 @@ import java.net.http.HttpResponse;
 
 public class GeocodingDAO {
 
-    private final static String BASE_URL ="https://geocoding-api.open-meteo.com/v1/search";
+    private final static String BASE_URL = "https://geocoding-api.open-meteo.com/v1/search";
 
     //https://geocoding-api.open-meteo.com/v1/search?name=Berlin&count=10&language=en
     public static LocationResults getData(String city) {
