@@ -1,9 +1,7 @@
 package com.northcoders.demospringbootapp;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.northcoders.demospringbootapp.DAO.GeocodingDAO;
+import org.springframework.web.bind.annotation.*;
 import com.northcoders.demospringbootapp.model.*;
 
 import java.util.ArrayList;
@@ -31,6 +29,18 @@ public class DemoController {
         pplList.add(new Person("Angela",30,"angela.valdez@outlook.com","Manchester","ramen"));
         return pplList;
     }
+
+    @GetMapping("/longlat/{city}/{country_code}")
+    public LongLat getLongLat(@PathVariable String city,@PathVariable String country_code){
+        List<LongLat> result = GeocodingDAO.getData(city).results();
+        for(LongLat i : result){
+            if(i.country_code().equalsIgnoreCase(country_code)){
+                return i;
+            }
+        }
+        return result.getFirst();
+    }
+
 
 
 
