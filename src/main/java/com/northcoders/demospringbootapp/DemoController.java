@@ -1,6 +1,7 @@
 package com.northcoders.demospringbootapp;
 
 import com.northcoders.demospringbootapp.DAO.GeocodingDAO;
+import com.northcoders.demospringbootapp.DAO.SunRiseSetDAO;
 import org.springframework.web.bind.annotation.*;
 import com.northcoders.demospringbootapp.model.*;
 
@@ -39,6 +40,12 @@ public class DemoController {
             }
         }
         return result.getFirst();
+    }
+
+    @GetMapping("/sunrise/{lat}/{lng}")
+    public SunRiseSet getSunRiseSet(@PathVariable double lat, @PathVariable double lng) {
+        return SunRiseSetDAO.getSunRiseSetResult(lat, lng).results();
+
     }
 
 
